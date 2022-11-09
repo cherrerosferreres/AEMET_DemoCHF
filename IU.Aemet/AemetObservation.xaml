@@ -1,0 +1,52 @@
+﻿<dx:ThemedWindow
+    x:Class="IU.Aemet.AemetObservation"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:local="clr-namespace:IU.Aemet"
+    Title="AemetObservation" Height="800" Width="1000">
+    <dx:ThemedWindow.DataContext>
+        <local:ObservationDataViewModel />
+    </dx:ThemedWindow.DataContext>
+    <DockPanel LastChildFill="True">
+        <dxr:RibbonControl DockPanel.Dock="Top" RibbonStyle="Office2019">
+            <dxr:RibbonControl.ToolbarItems>
+            </dxr:RibbonControl.ToolbarItems>
+            <dxr:RibbonDefaultPageCategory>
+                <dxr:RibbonPage Caption="Options">
+                    <dxr:RibbonPageGroup Caption="Save Data" SmallGlyph="{dx:DXImage SvgImages/DiagramIcons/save as.svg}" Glyph="{dx:DXImage SvgImages/DiagramIcons/save as.svg}" ShowCaptionButton="False">
+                        <dxb:BarButtonItem Content="Save Data" Glyph="{dx:DXImage SvgImages/DiagramIcons/save as.svg}" RibbonStyle="Large" ItemClick="bSaveData_ItemClick"/>
+                    </dxr:RibbonPageGroup>
+                    <dxr:RibbonPageGroup Caption="Print Report">
+                        <dxb:BarButtonItem Content="Export To Excel" Glyph="{dx:DXImage SvgImages/XAF/Action_Export_ToXLSX.svg}" RibbonStyle="Large"/>
+                        <dxb:BarButtonItem Content="Open Report" Glyph="{dx:DXImage SvgImages/Icon Builder/Business_Report.svg}" RibbonStyle="Large"/>
+                    </dxr:RibbonPageGroup>
+                </dxr:RibbonPage>
+            </dxr:RibbonDefaultPageCategory>
+            <dxr:RibbonPageCategory Caption="Ribbon Category">
+                <dxr:RibbonPage Caption="Statistics"/>
+            </dxr:RibbonPageCategory>
+        </dxr:RibbonControl>
+        <dxr:RibbonStatusBarControl DockPanel.Dock="Bottom">
+            <dxr:RibbonStatusBarControl.RightItems>
+            </dxr:RibbonStatusBarControl.RightItems>
+        </dxr:RibbonStatusBarControl>
+        <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding Source}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" SelectionMode="Row">
+            <dxg:GridControl.View>
+                <dxg:TableView ShowTotalSummary="True" AllowEditing="False" ShowAutoFilterRow="True">
+
+                    <dxg:TableView.ColumnHeaderStyle>
+                        <Style TargetType="dxg:BaseGridHeader">
+                            <Setter Property="dxg:BaseGridColumnHeader.ShowFilterButtonOnHover" Value="True" />
+                            <Setter Property="Background" Value="LightSkyBlue" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Style>
+                    </dxg:TableView.ColumnHeaderStyle>
+                </dxg:TableView>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+
+    </DockPanel>
+</dx:ThemedWindow>
